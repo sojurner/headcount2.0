@@ -41,21 +41,18 @@ class App extends Component {
 
   selectCard = location => {
     if (!this.state.cardClick[location]) {
-      this.state.cardClick[location] = true;
+      const cardClick = { ...this.state.cardClick };
+      cardClick[location] = true;
+      this.setState({ cardClick });
     } else {
-      this.state.cardClick[location] = false;
+      delete this.state.cardClick[location];
+      console.log(this.state.cardClick);
     }
-    if (
-      this.state.selectedDistricts.length < 1 &&
-      this.state.cardClick[location]
-    ) {
-      const selectedDistricts = [
-        ...this.state.selectedDistricts,
-        this.state.cardClick
-      ];
-      this.setState({ selectedDistricts: selectedDistricts });
+    if (this.state.selectedDistricts.length <= 1) {
+      const selectedDistricts = [...this.state.selectedDistricts, location];
+      this.setState({ selectedDistricts });
     }
-    console.log(this.state.cardClick);
+    console.log(this.state.selectedDistricts);
   };
 
   compareDistricts = (districtOne, districtTwo) => {
@@ -78,7 +75,6 @@ class App extends Component {
     comparisonData[districtTwo].cardClick = null;
 
     this.setState({ comparisonData });
-    console.log(comparisonData);
   };
 
   render() {
@@ -87,13 +83,15 @@ class App extends Component {
         Welcome To Headcount 2.0
         <Search handleSubmit={this.handleSubmit} />
         {this.state.comparisonData !== {} && (
-          <ControlCards comparisonData={this.state.comparisonData} />
+          <ControlCards
+            comparisonData={this.state.comparisonData}
+            cardClick={this.state.cardClick}
+          />
         )}
         {this.state.districts && (
           <DistrictCardContainer
             districts={this.state.districts}
             selectCard={this.selectCard}
-            cardClick={this.state.cardClick}
           />
         )}
       </div>
