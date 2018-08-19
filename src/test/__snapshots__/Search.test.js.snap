@@ -7,9 +7,9 @@ exports[`Search should match snapshot 1`] = `
   <form>
     <input
       className="search-input"
-      disabled={true}
+      disabled={false}
       onChange={[Function]}
-      placeholder="Remove Card to Search"
+      placeholder="Search District"
       type="text"
       value=""
     />

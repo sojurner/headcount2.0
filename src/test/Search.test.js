@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import Search from "../Components/Search";
 
 describe("Search", () => {
@@ -46,7 +45,7 @@ describe("Search", () => {
     expect(shallowWrap.state().districtInputOne).toEqual("COLORADO");
   });
 
-  it("should set state of Search suggestions based on userInput", () => {
+  it("should set state of Search suggestions based on userInput and clicked property", () => {
     shallowWrap.instance().handleChange({ value: "Colorado" });
 
     const result = [
@@ -83,6 +82,16 @@ describe("Search", () => {
           "2013": 0.989,
           "2014": 0.994
         }
+      },
+      {
+        clicked: true,
+        location: "ADAMS COUNTY 14",
+        stats: { "2004": 0.24, "2005": 0.278, "2006": 0.337, "2007": 0.395 }
+      },
+      {
+        clicked: true,
+        location: "COLORADO",
+        stats: { "2004": 0.24, "2005": 0.278, "2006": 0.337, "2007": 0.395 }
       }
     ];
 
@@ -114,7 +123,6 @@ describe("Search", () => {
 
   it("should suggest districts based on user input", () => {
     let eventOne = { target: { value: "Acade" } };
-    let event = { target: { textContent: "ACADEMY 20" } };
     let mockSelect = jest.fn();
     let mockSubmit = jest.fn();
     let mockClear = jest.fn();
@@ -140,7 +148,7 @@ describe("Search", () => {
     let userInput = shallowWrap.find("input");
 
     userInput.simulate("change", eventOne);
-    let suggestionOne = shallowWrap.find("p");
+    let suggestionOne = shallowWrap.find("p").at(0);
 
     let suggestedOneContent = suggestionOne.props().children;
     expect(suggestedOneContent).toEqual("ACADEMY 20");
@@ -168,8 +176,16 @@ describe("Search", () => {
     );
 
     shallowWrap.setState({ districtInputOne: "Denver" });
+    expect(shallowWrap.state().districtInputOne).toEqual("Denver");
+
     shallowWrap.instance().clearInput();
     expect(shallowWrap.state().districtInputOne).toEqual("");
+
+    shallowWrap.setState({ districtInputOne: "Denver" });
+    expect(shallowWrap.state().districtInputOne).toEqual("Denver");
+
+    shallowWrap.find("button").simulate("click");
+    expect(mockClear).toHaveBeenCalled();
   });
 
   it("should search for specific district and invoke the handleSubmit Method from state", () => {
@@ -178,6 +194,15 @@ describe("Search", () => {
   });
 
   it("should match snapshot", () => {
+    shallowWrap = shallow(
+      <Search
+        selectedDistricts={[]}
+        handleSubmit={jest.fn()}
+        selectCard={jest.fn()}
+        clearComparisons={jest.fn()}
+      />
+    );
+
     expect(shallowWrap).toMatchSnapshot();
   });
 

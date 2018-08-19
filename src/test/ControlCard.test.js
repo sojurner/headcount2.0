@@ -6,7 +6,7 @@ import { DistrictCard } from "../Components/DistrictCard";
 describe("ControlCards", () => {
   let shallowWrap;
   let mountWrap;
-  let mockClick = { "BAYFIELD 10 JT-R": true, "BENNETT 29J": true };
+  let mockClick = jest.fn();
   let mockData = {
     "AGUILAR REORGANIZED 6": {
       location: "AGUILAR REORGANIZED 6",
@@ -31,7 +31,7 @@ describe("ControlCards", () => {
     }
   };
 
-  const mockdDistricts = [
+  const mockdDistrictsOne = [
     {
       clicked: true,
       location: "COLORADO",
@@ -68,19 +68,39 @@ describe("ControlCards", () => {
     }
   ];
 
+  const mockdDistrictsTwo = [
+    {
+      clicked: true,
+      location: "ACADEMY 20",
+      stats: {
+        2004: 0.24,
+        2005: 0.278,
+        2006: 0.337,
+        2007: 0.395,
+        2008: 0.536,
+        2009: 0.598,
+        2010: 0.64,
+        2011: 0.672,
+        2012: 0.695,
+        2013: 0.703,
+        2014: 0.741
+      }
+    }
+  ];
+
   beforeEach(() => {
     shallowWrap = shallow(
       <ControlCards
         comparisonData={mockData}
-        cardClick={mockClick}
-        selectedDistricts={mockdDistricts}
+        selectCard={mockClick}
+        selectedDistricts={mockdDistrictsOne}
       />
     );
     mountWrap = mount(
       <ControlCards
         comparisonData={mockData}
-        cardClick={mockClick}
-        selectedDistricts={mockdDistricts}
+        selectCard={mockClick}
+        selectedDistricts={mockdDistrictsOne}
       />
     );
   });
@@ -92,9 +112,23 @@ describe("ControlCards", () => {
 
   it("should match snapshot with no control card", () => {
     shallowWrap = shallow(
-      <ControlCards comparisonData={{}} cardClick={mockClick} />
+      <ControlCards
+        comparisonData={{}}
+        selectedDistricts={[]}
+        selectCard={mockClick}
+      />
     );
+    expect(shallowWrap).toMatchSnapshot();
+  });
 
+  it("should match snapshot with no control card", () => {
+    shallowWrap = shallow(
+      <ControlCards
+        comparisonData={{}}
+        selectedDistricts={mockdDistrictsTwo}
+        selectCard={mockClick}
+      />
+    );
     expect(shallowWrap).toMatchSnapshot();
   });
 
