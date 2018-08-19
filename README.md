@@ -3,6 +3,8 @@
 HeadCount 2.0 is a project designed to challenge our skills at manipulating data and creating small, reusable React components.  
 
 
-Screen Shot 2018-08-19 at 1.20.44 PM
-Screen Shot 2018-08-19 at 1.21.13 PM
-Screen Shot 2018-08-19 at 1.21.46 PM
+![screenshot2](https://user-images.githubusercontent.com/35910428/44312362-fb932c80-a3b3-11e8-8840-1abd8b9a01be.png)
+
+
+
+
