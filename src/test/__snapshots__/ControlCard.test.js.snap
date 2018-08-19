@@ -8,6 +8,7 @@ exports[`ControlCards should match snapshot 1`] = `
     index={0}
     key="compared 0"
     location="AGUILAR REORGANIZED 6"
+    selectCard={[Function]}
     stats={
       Object {
         "2004": 1,
@@ -19,6 +20,7 @@ exports[`ControlCards should match snapshot 1`] = `
     index={1}
     key="compared 1"
     location="AKRON R-1"
+    selectCard={[Function]}
     stats={
       Object {
         "2008": 0.844,
@@ -41,6 +43,14 @@ exports[`ControlCards should match snapshot 1`] = `
 `;
 
 exports[`ControlCards should match snapshot with no control card 1`] = `
+<div
+  className="control-cards"
+>
+   
+</div>
+`;
+
+exports[`ControlCards should match snapshot with no control card 2`] = `
 <div
   className="control-cards"
 >

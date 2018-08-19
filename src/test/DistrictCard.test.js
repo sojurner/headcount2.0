@@ -3,9 +3,27 @@ import { DistrictCard } from "../Components/DistrictCard";
 
 describe("DistrictCard", () => {
   let shallowWrap;
-  let mockLocation = {
+  let mockLocationOne = {
     clicked: true,
     location: "Colorado",
+    stats: {
+      "2004": 0.24,
+      "2005": 0.278,
+      "2006": 0.337,
+      "2007": 0.395,
+      "2008": 0.536,
+      "2009": 0.598,
+      "2010": 0.64,
+      "2011": 0.672,
+      "2012": 0.695,
+      "2013": 0.703,
+      "2014": 0.741
+    }
+  };
+
+  let mockLocationTwo = {
+    clicked: false,
+    location: "ACADEMY 20",
     stats: {
       "2004": 0.24,
       "2005": 0.278,
@@ -24,9 +42,11 @@ describe("DistrictCard", () => {
   beforeEach(() => {
     shallowWrap = shallow(
       <DistrictCard
-        location={mockLocation.location}
-        stats={mockLocation.stats}
+        location={mockLocationOne.location}
+        stats={mockLocationOne.stats}
+        clicked={mockLocationOne.clicked}
         selectCard={jest.fn()}
+        counter={1}
       />
     );
   });
@@ -39,10 +59,11 @@ describe("DistrictCard", () => {
     let mockfn = jest.fn();
     let mockWrap = shallow(
       <DistrictCard
-        location={mockLocation.location}
-        stats={mockLocation.stats}
+        location={mockLocationOne.location}
+        stats={mockLocationOne.stats}
+        clicked={mockLocationOne.clicked}
         selectCard={mockfn}
-        index={1}
+        counter={1}
       />
     );
     let sectionOne = mockWrap.find("div").first();
@@ -54,7 +75,25 @@ describe("DistrictCard", () => {
 
   it("should match snapshot", () => {
     shallowWrap = shallow(
-      <DistrictCard location={""} stats={{}} selectCard={jest.fn()} />
+      <DistrictCard
+        location={""}
+        stats={{}}
+        selectCard={jest.fn()}
+        counter={0}
+      />
+    );
+    expect(shallowWrap).toMatchSnapshot();
+  });
+
+  it("should match snapshot with clicked false property", () => {
+    shallowWrap = shallow(
+      <DistrictCard
+        location={mockLocationTwo.location}
+        stats={mockLocationTwo.stats}
+        clicked={mockLocationTwo.clicked}
+        selectCard={jest.fn()}
+        counter={1}
+      />
     );
     expect(shallowWrap).toMatchSnapshot();
   });
