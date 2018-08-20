@@ -92,26 +92,6 @@ export default class Search extends Component {
           >
             Did you Mean?
           </span>
-          {this.state.searchSuggestions.map((district, index) => {
-            if (
-              this.state.searchSuggestions &&
-              this.state.districtInputOne.length > 1
-            ) {
-              var suggestions = (
-                <p
-                  className="suggestions"
-                  key={index}
-                  onClick={event => {
-                    this.props.selectCard(event.target.textContent);
-                    this.clearInput();
-                  }}
-                >
-                  {district.location}
-                </p>
-              );
-            }
-            return suggestions;
-          })}
         </div>
       </div>
     );
