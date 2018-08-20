@@ -123,6 +123,8 @@ describe("Search", () => {
 
   it("should suggest districts based on user input", () => {
     let eventOne = { target: { value: "Acade" } };
+    let eventTwo = { target: { value: "A" } };
+
     let mockSelect = jest.fn();
     let mockSubmit = jest.fn();
     let mockClear = jest.fn();
@@ -136,29 +138,18 @@ describe("Search", () => {
       />
     );
 
-    let mountWrap = mount(
-      <Search
-        selectedDistricts={mockData}
-        handleSubmit={mockSubmit}
-        selectCard={mockSelect}
-        clearComparisons={mockClear}
-      />
-    );
+    expect(shallowWrap.state().searchSuggestions.length).toEqual(0);
 
     let userInput = shallowWrap.find("input");
-
     userInput.simulate("change", eventOne);
-    let suggestionOne = shallowWrap.find("p").at(0);
 
-    let suggestedOneContent = suggestionOne.props().children;
-    expect(suggestedOneContent).toEqual("ACADEMY 20");
+    let suggestionOne = shallowWrap.state().searchSuggestions;
+    expect(suggestionOne.length).toEqual(3);
 
-    let userInputTwo = mountWrap.find("input");
-    userInputTwo.simulate("change", eventOne);
+    userInput.simulate("change", eventTwo);
 
-    let suggestionTwo = mountWrap.find("p").at(0);
-    suggestionTwo.simulate("click");
-    expect(mockSelect).toHaveBeenCalled();
+    let suggestionTwo = shallowWrap.state().searchSuggestions;
+    expect(suggestionTwo.length).toEqual(122);
   });
 
   it("should clear input, invoke the handleSubmit method from state", () => {
