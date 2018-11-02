@@ -2,16 +2,27 @@
 
 HeadCount 2.0 is a project designed to challenge our skills at manipulating data and creating small, reusable React components.  
 
-Extracted annual score averages from Kindergarden Data, and using React created a score comparison app.  User can select two districts and will display the annual averages of each district from 2004 - 2014.  In addition the comparison card showing the aggregate average for each district and a comparison Value.
+Extracted annual score averages from Kindergarden Data. Users can select two districts and compare the annual student score averages of each district from 2004 - 2014.  In addition the a comparison card will be generated showing the aggregate average for each district and a comparison Value.
 
-## My Version:
+### Technologies
+- React
 
+### Set-Up
+Clone down this Repo
+
+Install dependencies: `npm install`
+
+Starting Server: `npm start`
+
+Running testing suite: `npm test`
+
+EsLint: `npm run eslint`
+
+## Result
 
 #### Initial Page
 
 ![screenshot3](https://user-images.githubusercontent.com/35910428/44312384-414ff500-a3b4-11e8-9bda-c193c7b97f08.png)
-
-
 
 #### Searching for Districts
 
