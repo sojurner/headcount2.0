@@ -1,5 +1,7 @@
 # HeadCount 2.0
 
+Feeling like your kids school has been slacking?  Well, what if I told you, that instead of googling the schools performance, there was an app that could show you the average student scores for each school in Colorado.  Not only can check out your kids school but now you can compare with other schools.  I instroduce to you HeadCount...
+
 HeadCount 2.0 is a project designed to challenge our skills at manipulating data and creating small, reusable React components.  
 
 Extracted annual score averages from Kindergarden Data. Users can select two districts and compare the annual student score averages of each district from 2004 - 2014.  In addition the a comparison card will be generated showing the aggregate average for each district and a comparison Value.
